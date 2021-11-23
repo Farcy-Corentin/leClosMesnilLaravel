@@ -41,7 +41,7 @@ class CategoryController extends Controller
 
         return redirect()
             ->route('admin.category.show', $category->slug)
-            ->with(['success' => 'Création de l\'article']);
+            ->with(['success' => 'Création de la catégorie']);
     }
 
     public function show(string $slug): View|Factory
@@ -75,7 +75,11 @@ class CategoryController extends Controller
         $category->delete();
         return redirect()
             ->route('admin.category.index')
+<<<<<<< HEAD
             ->with(['success' => 'La catégorie est bien supprimé']);
+=======
+            ->with(['success' => 'La catégorie a bien été supprimé']);
+>>>>>>> f8bd8d6 (Update master)
     }
 
     private function storeCategory(array $categoryData, Category|null $category = null): Category

@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\Traits\PeriodableScope;
+use DateTime;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -15,7 +17,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Season extends Model
 {
-    use HasFactory;
+    use HasFactory, PeriodableScope;
 
     protected $table = 'seasons';
 }

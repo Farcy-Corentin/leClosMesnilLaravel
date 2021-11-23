@@ -1,5 +1,7 @@
 @extends('layouts.app')
-
+@section('scripts')
+    <script type="text/javascript" src="{{ asset('js/intlTelInput.js') }}" defer></script>
+@endsection
 @section('content')
     <div class="container">
         <div class="row justify-content-center">

@@ -48,6 +48,20 @@
                             </div>
                             <div class="form-group row my-4">
                                 <div class="col-md-12">
+                                    <input id="image_name" type="text"
+                                           placeholder="Entrez le nom de votre image..."
+                                           class="form-control @error('image_name') is-invalid @enderror"
+                                           name="image_name"
+                                           value="{{ old('image_name') }}" autofocus>
+                                    @error('image_name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="form-group row my-4">
+                                <div class="col-md-12">
                                     <input id="title" type="text"
                                            class="form-control @error('title') is-invalid @enderror" name="title"
                                            placeholder="Titre de l'article"

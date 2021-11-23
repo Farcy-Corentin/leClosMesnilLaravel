@@ -1,5 +1,9 @@
 // Body
+<<<<<<< HEAD
 $body-bg: #FFFFF4;
+=======
+$body-bg: #F9F9F9;
+>>>>>>> f8bd8d6 (Update master)
 $body-color: #2F3640;
 
 // Typography
@@ -19,6 +23,10 @@ $warning: #FFA333;
 $primary: #327882;
 $secondary: #FFA333;
 $gray: #a4b0be;
+<<<<<<< HEAD
+=======
+$white: #F9F9F9;
+>>>>>>> f8bd8d6 (Update master)
 $navbar-light-color: rgba($primary, .55);
 
 
@@ -29,5 +37,7 @@ $spacer: 2rem;
 $progress-bar-bg: $gray;
 
 // Form validation
-
 $enable-validation-icons: false;
+
+// Z-Index
+$zindex-dropdown: 1100;
