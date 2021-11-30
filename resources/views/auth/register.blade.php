@@ -54,6 +54,7 @@
                                                name="phone"
                                                placeholder="Numéro de téléphone"
                                                value="" autocomplete="phone" autofocus>
+<<<<<<< HEAD
                                         @error('phone')
                                         <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -61,6 +62,11 @@
                                         @enderror
                                     </label>
                                     <input type="hidden" id="hidden" value="">
+=======
+                                    </label>
+                                    <span id="valid-msg" class="iti__hide">✓ Valid</span>
+                                    <span id="error-msg" class="iti__hide"></span>
+>>>>>>> a6a54df (Update input phone)
                                 </div>
                             </div>
                             <div class="row justify-content-center">
