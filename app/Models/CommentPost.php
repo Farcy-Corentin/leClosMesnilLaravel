@@ -5,10 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Str;
 
 /**
- * @property int $id
- * @property int $post_id
+ * @property string $id
+ * @property string $post_id
  * @property string $author
  * @property string $content
  * @property DateTime $created_at
@@ -20,6 +21,30 @@ class CommentPost extends Model
 
     protected $table = 'comments_post';
 
+<<<<<<< HEAD
+=======
+    /**
+     * The "type" of the primary key ID.
+     *
+     * @var string
+     */
+    protected $keyType = 'string';
+
+    /**
+     * Indicates if the IDs are auto-incrementing.
+     *
+     * @var bool
+     */
+    public $incrementing = false;
+
+    protected static function booted()
+    {
+        static::creating(function ($comments_posts) {
+            $comments_posts->id = (string) Str::uuid();
+        });
+    }
+
+>>>>>>> f3a43d8 (Update calendar)
     public function posts(): BelongsTo
     {
         return $this->belongsTo(Post::class, 'post_id');
