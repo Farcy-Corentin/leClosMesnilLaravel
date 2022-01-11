@@ -23,7 +23,7 @@ class CategoryController extends Controller
     public function index(): View|Factory
     {
         $categories = Category::all();
-        $posts =Post::all();
+        $posts = Post::all();
 
         return view('admin.category.index', compact('categories','posts'));
     }
@@ -48,13 +48,12 @@ class CategoryController extends Controller
     {
         $category = Category::where("slug","=", $slug)->first();
         $posts = Post::all();
-        return view("admin.category.show", compact('category',"posts"));
+        return view("admin.category.show", compact('category','posts'));
     }
 
-
-    public function edit(int $id): View|Factory
+    public function edit(string $slug): View|Factory
     {
-        $category = Category::find($id);
+        $category = Category::find($slug);
 
         return view("admin.category.edit", compact('category'));
     }
@@ -62,11 +61,10 @@ class CategoryController extends Controller
     public function update(CategoryStoreRequest $request, Category $category): Redirector|RedirectResponse
     {
         $this->storeCategory($request->all(), $category);
-
         $category->save();
 
         return redirect()
-            ->route('admin.category.show', $category->id)
+            ->route('admin.category.show', $category->slug)
             ->with(['success' => 'Modification de la catégorie']);
     }
 

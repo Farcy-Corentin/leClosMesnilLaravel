@@ -105,6 +105,7 @@
 >>>>>>> f8bd8d6 (Update master)
                                     <a class="dropdown-item"
                                        href="{{ route('admin.category.index') }}">Liste des catégories</a>
+                                   
                                     <a class="dropdown-item"
                                        href="{{ route('admin.category.create') }}">Créer une catégorie</a>
 
@@ -114,6 +115,25 @@
                                     <a class="dropdown-item" href="{{ route('admin.season.create') }}">
                                         Creation saison
                                     </a>
+                                    <a class="dropdown-item" href="{{ route('admin.hotel.create') }}">
+                                        Crée Home
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('admin.hotel.index') }}">
+                                        Show Home
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('admin.equipmentCategory.create') }}">
+                                        Crée Equipment Category
+                                    </a>
+                                    
+                                    <a class="dropdown-item" href="{{ route('admin.equipmentCategory.index') }}">
+                                        show Equipment Category
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('admin.equipment.create') }}">
+                                        Crée Equipment
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('admin.equipment.index') }}">
+                                        Show Equiment 
+                                    </a> 
                                 @endif
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf

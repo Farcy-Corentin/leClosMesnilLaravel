@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\EquipmentController;
+use App\Http\Controllers\HotelController;
 
 class MyLogger implements Psr\Log\LoggerInterface
 {
@@ -61,7 +63,9 @@ class MyLogger implements Psr\Log\LoggerInterface
 
 Route::get('/', [PostController::class, 'index'])->name('index')->middleware('verified');
 Route::get('/posts', [PostController::class, 'getPost']);
+Route::get('/about', [HotelController::class, 'getAbout']);
 Route::get('/category', [PostController::class, 'getCategory']);
+Route::get('/equipment', [EquipmentController::class, 'getEquipment']);
 
 //Route::get('/posts', [PostController::class, 'index'])->name('post.index');
 Route::get('/post/{slug}', [PostController::class, 'show'])->where('slug', '[\w\d\-\_]+')->name('post.show');
