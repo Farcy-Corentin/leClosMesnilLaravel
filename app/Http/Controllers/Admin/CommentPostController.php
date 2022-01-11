@@ -2,13 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Carbon\Factory;
-use Illuminate\View\View;
 use App\Models\CommentPost;
 use App\Http\Controllers\Controller;
-use App\Models\Post;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Request;
 
 class CommentPostController extends Controller
 {
@@ -22,6 +18,6 @@ class CommentPostController extends Controller
         $commentPost->delete();
         return redirect()
             ->route('admin.post.index')
-            ->with(['success' => 'Le commentaire est bien supprimé']);
+            ->with(['success' => 'Le commentaire a bien été supprimé']);
     }
 }

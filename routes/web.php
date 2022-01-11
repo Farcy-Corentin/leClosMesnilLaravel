@@ -2,25 +2,83 @@
 
 
 use App\Http\Controllers\CategoryController;
+use App\Optimizer\OptimizerChainFactory;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\EquipmentController;
+use App\Http\Controllers\HotelController;
+
+class MyLogger implements Psr\Log\LoggerInterface
+{
 
 
-Route::get('/', [PostController::class, 'index'])->name('index');
+    public function emergency(\Stringable|string $message, array $context = [])
+    {
+        $this->log('emergency', $message, $context);
+    }
 
-Route::get('/post', [PostController::class, 'index'])->name('post.index');
+    public function alert(\Stringable|string $message, array $context = [])
+    {
+        $this->log('alert', $message, $context);
+    }
+
+    public function critical(\Stringable|string $message, array $context = [])
+    {
+        $this->log('critical', $message, $context);
+    }
+
+    public function error(\Stringable|string $message, array $context = [])
+    {
+        $this->log('error', $message, $context);
+    }
+
+    public function warning(\Stringable|string $message, array $context = [])
+    {
+        $this->log('warning', $message, $context);
+    }
+
+    public function notice(\Stringable|string $message, array $context = [])
+    {
+        $this->log('notice', $message, $context);
+    }
+
+    public function info(\Stringable|string $message, array $context = [])
+    {
+        $this->log('info', $message, $context);
+    }
+
+    public function debug(\Stringable|string $message, array $context = [])
+    {
+        $this->log('debug', $message, $context);
+    }
+
+    public function log($level, \Stringable|string $message, array $context = [])
+    {
+        dump($level, $message, $context);
+    }
+}
+
+Route::get('/', [PostController::class, 'index'])->name('index')->middleware('verified');
+Route::get('/posts', [PostController::class, 'getPost']);
+Route::get('/about', [HotelController::class, 'getAbout']);
+Route::get('/category', [PostController::class, 'getCategory']);
+Route::get('/equipment', [EquipmentController::class, 'getEquipment']);
+
+//Route::get('/posts', [PostController::class, 'index'])->name('post.index');
 Route::get('/post/{slug}', [PostController::class, 'show'])->where('slug', '[\w\d\-\_]+')->name('post.show');
+Route::get('/post/{slug}#comment', [PostController::class, 'show'])->where('slug', '[\w\d\-\_]+')->name('post.comment');
 
 Route::post('/comments/{post}', [CommentController::class, 'store'])->name('comment.store');
-Route::patch('/comments/{comment}', [CommentController::class, 'update'])->name('comment.update');
-Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comment.destroy');
+Route::patch('/comment/{comment}', [CommentController::class, 'update'])->name('comment.update');
+Route::delete('/comment/{comment}', [CommentController::class, 'destroy'])->name('comment.destroy');
 
 Route::get('/booking', [BookingController::class, 'index'])->name('booking');
+Route::get('/bookings', [BookingController::class, 'getBooking']);
 Route::post('/booking', [BookingController::class, 'store'])->name('booking.store');
 
 Route::get('/category/{slug}', [CategoryController::class, 'show'])->name('category.show');
 
-Auth::routes();
+Auth::routes(['verify' => true]);
