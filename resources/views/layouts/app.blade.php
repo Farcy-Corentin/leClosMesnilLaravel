@@ -13,16 +13,8 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" type="text/css" rel="stylesheet">
-<<<<<<< HEAD
-<<<<<<< HEAD
-    <script src="https://cdn.tiny.cloud/1/85260khgyt3z8u1tbp3820vnlqz4mcbhcz6xw0e5govencm7/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-=======
-=======
-    <link href="{{ asset('css/main.css') }}" type="text/css" rel="stylesheet">
->>>>>>> 939ed3b (Add infinite-scroll)
     <script src="https://cdn.tiny.cloud/1/85260khgyt3z8u1tbp3820vnlqz4mcbhcz6xw0e5govencm7/tinymce/5/tinymce.min.js"
             referrerpolicy="origin"></script>
->>>>>>> f8bd8d6 (Update master)
     <script type="text/javascript">
         tinymce.init({
             selector: '#content',
