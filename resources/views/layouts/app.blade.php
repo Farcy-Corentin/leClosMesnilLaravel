@@ -42,16 +42,7 @@
             content_css: 'css/content.css'
         });
     </script>
-<<<<<<< HEAD
-    <script type="text/javascript" src="{{ asset('js/updateEditComment.js') }}" defer></script>
-    <script type="text/javascript" src="{{ asset('js/passwordChecker.js') }}" defer></script>
-<<<<<<< HEAD
-=======
-    <script type="text/javascript" src="{{ asset('js/counterButton.js') }}" defer></script>
-=======
->>>>>>> 939ed3b (Add infinite-scroll)
     @yield("scripts")
->>>>>>> f8bd8d6 (Update master)
 </head>
 <body>
 <header class="container-fluid">
@@ -95,17 +86,10 @@
                                     {{ __('Déconnexion') }}
                                 </a>
                                 @if(auth()->user()->is_admin == 1)
-<<<<<<< HEAD
                                 <a class="dropdown-item" href="{{ route('admin.post.index') }}">Liste des posts</a>
                                 <a class="dropdown-item" href="{{ route('admin.post.create') }}">Ecrire un article </a>
-=======
-                                    <a class="dropdown-item" href="{{ route('admin.post.index') }}">Liste des posts</a>
-                                    <a class="dropdown-item" href="{{ route('admin.post.create') }}">Ecrire un
-                                        article </a>
->>>>>>> f8bd8d6 (Update master)
                                     <a class="dropdown-item"
                                        href="{{ route('admin.category.index') }}">Liste des catégories</a>
-                                   
                                     <a class="dropdown-item"
                                        href="{{ route('admin.category.create') }}">Créer une catégorie</a>
 
@@ -115,25 +99,6 @@
                                     <a class="dropdown-item" href="{{ route('admin.season.create') }}">
                                         Creation saison
                                     </a>
-                                    <a class="dropdown-item" href="{{ route('admin.hotel.create') }}">
-                                        Crée Home
-                                    </a>
-                                    <a class="dropdown-item" href="{{ route('admin.hotel.index') }}">
-                                        Show Home
-                                    </a>
-                                    <a class="dropdown-item" href="{{ route('admin.equipmentCategory.create') }}">
-                                        Crée Equipment Category
-                                    </a>
-                                    
-                                    <a class="dropdown-item" href="{{ route('admin.equipmentCategory.index') }}">
-                                        show Equipment Category
-                                    </a>
-                                    <a class="dropdown-item" href="{{ route('admin.equipment.create') }}">
-                                        Crée Equipment
-                                    </a>
-                                    <a class="dropdown-item" href="{{ route('admin.equipment.index') }}">
-                                        Show Equiment 
-                                    </a> 
                                 @endif
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf
@@ -146,7 +111,7 @@
         </div>
     </nav>
 </header>
-<main class="container-fluid mb-3">
+<main class="container-fluid mb-5">
     @include('partials.flashMessage')
     @yield('content')
 </main>

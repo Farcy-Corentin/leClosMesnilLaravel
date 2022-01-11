@@ -21,8 +21,6 @@ class CommentPost extends Model
 
     protected $table = 'comments_post';
 
-<<<<<<< HEAD
-=======
     /**
      * The "type" of the primary key ID.
      *
@@ -44,7 +42,6 @@ class CommentPost extends Model
         });
     }
 
->>>>>>> f3a43d8 (Update calendar)
     public function posts(): BelongsTo
     {
         return $this->belongsTo(Post::class, 'post_id');
