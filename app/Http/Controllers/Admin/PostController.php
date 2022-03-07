@@ -10,13 +10,12 @@ use App\Optimizer\OptimizerChainFactory;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use MyLogger;
-use Spatie\LaravelImageOptimizer\Facades\ImageOptimizer;
+
 
 class PostController extends Controller
 {
@@ -25,7 +24,7 @@ class PostController extends Controller
         $this->middleware('auth');
     }
 
-    public function index(Request $request): View|Factory
+    public function index(): View|Factory
     {
         $posts = Post::OrderByDesc('created_at')->paginate(30);
 
@@ -38,14 +37,15 @@ class PostController extends Controller
         return view('admin.post.create', compact('categories'));
     }
 
-    public function show(Post $post): View|Factory
+    public function show(string $slug): View|Factory
     {
+        $post = Post::where('slug', '=', $slug)->first();
         return view('admin.post.show')->with('post', $post);
     }
 
-    public function edit(int $id): View|Factory
+    public function edit(string $slug): View|Factory
     {
-        $post = Post::find($id);
+        $post = Post::where('slug', '=', $slug)->first();
         $categories = Category::All();
         return view('admin.post.edit', compact('post', 'categories'));
     }
@@ -59,9 +59,9 @@ class PostController extends Controller
 
         $filename = $request->get('image_name') . "." . $file->extension();
         $file->storeAs('img', $filename ,'public');
-        $path = 'C:\\DEV\\leClosMesnilLaravel\\storage\\app\\public\\img\\' . $filename;
+        $path = '../storage/app/public/img/' . $filename;
         $filenameOpti = $request->get('image_name') . "Opti" . "." . $file->extension();
-        $pathOpti = "C:\\DEV\\leClosMesnilLaravel\\storage\\app\\public\\img\\" .$filenameOpti;
+        $pathOpti = "../storage/app/public/img/" .$filenameOpti;
         $optimizerChain = OptimizerChainFactory::create();
         $optimizerChain->optimize($path, $pathOpti);
 
@@ -69,12 +69,13 @@ class PostController extends Controller
         $post->save();
 
         return redirect()
-            ->route('admin.post.show', $post->id)
+            ->route('admin.post.show', $post->slug)
             ->with(['success' => 'Création de l\'article']);
     }
 
-    public function update(PostStoreFormRequest $request, Post $post): Redirector|RedirectResponse
+    public function update(PostStoreFormRequest $request, string $slug): Redirector|RedirectResponse
     {
+        $post = Post::where('slug', '=', $slug)->first();
         $filepath = storage_path('app/public/img/' . $post->image_path);
         if (file_exists($filepath)) {
             unlink($filepath);
@@ -87,9 +88,9 @@ class PostController extends Controller
 
         $filename = $request->get('image_name') . "." . $file->extension();
         $file->storeAs('img', $filename ,'public');
-        $path = 'C:\\DEV\\leclosmesnil\\storage\\app\\public\\img\\' . $filename;
+        $path = '../storage/app/public/img/' . $filename;
         $filenameOpti = $request->get('image_name') . "Opti" . "." . $file->extension();
-        $pathOpti = "C:\\DEV\\leclosmesnil\\storage\\app\\public\\img\\" .$filenameOpti;
+        $pathOpti = "../storage/app/public/img/" .$filenameOpti;
         $optimizerChain = OptimizerChainFactory::create();
         $optimizerChain->optimize($path, $pathOpti);
 
@@ -97,7 +98,7 @@ class PostController extends Controller
         $post->save();
 
         return redirect()
-            ->route('admin.post.show', $post->id)
+            ->route('admin.post.show', $post->slug)
             ->with(['success' => 'Modification de l\'article']);
     }
 
@@ -115,8 +116,9 @@ class PostController extends Controller
         return $post;
     }
 
-    public function destroy(Post $post): RedirectResponse
+    public function destroy(string $slug): RedirectResponse
     {
+        $post = Post::where('slug', '=', $slug)->first();
         $post->delete();
         $filepath = storage_path('app/public/img/' . $post->image_path);
         unlink($filepath);

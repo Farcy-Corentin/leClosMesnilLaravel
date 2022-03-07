@@ -144,15 +144,13 @@
                 <h3>Contact</h3>
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a href="#" class="nav-link text-white">
-                            <i class="fas fa-phone-alt text-white"></i>06000000</a>
+                        <a href="#" class="nav-link text-white">A propos</a>
                     </li>
                     <li class="nav-item">
-                        <a href="mailto:corentinfarcy1@gmail.com" class="nav-link text-white">
-                            <i class="fas fa-envelope text-white"></i>corentinfarcy1@gmail.com</a>
+                        <a href="#" class="nav-link text-white">Nous contactez</a>
                     </li>
                     <li class="nav-item">
-                        <p><i class="fas fa-map-marker-alt text-white"></i>4 Rue des Chasse-Marée, 76260 Le Mesnil-Réaume</p>
+                        <p>4 Rue des Chasse-Marée, 76260 Le Mesnil-Réaume</p>
                     </li>
                 </ul>
             </div>

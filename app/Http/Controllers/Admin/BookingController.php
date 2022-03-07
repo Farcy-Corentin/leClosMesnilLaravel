@@ -80,7 +80,7 @@ class BookingController extends Controller
         $booking->delete();
         return redirect()
             ->route('admin.booking.index')
-            ->with(['success' => 'La réservation a bien été supprimé']);
+            ->with(['success' => 'Le booking a bien été supprimé']);
     }
 
     private function Booking(array $bookingData, Booking|null $booking = null): Booking

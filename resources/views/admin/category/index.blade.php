@@ -23,21 +23,24 @@
                                     @else
                                         <td>Aucune mise à jour</td>
                                     @endif
-                                    <td><a href="{{ route('admin.post.show', $post->id) }}" class="btn btn-outline-primary">View</a></td>
+                                    <td><a href="{{ route('admin.post.show', $post->slug) }}" class="btn btn-outline-primary">View</a></td>
                                 </tr>
                             @endif
                         @endforeach
                     </table>
                     <div class="row justify-content-end me-0">
                         <div class="col-4 col-lg-2">
-                            <form method="POST" action="{{ route('admin.category.destroy', ['category' => $category->id]) }}">
+                            <form
+                                method="POST"
+                                action="{{ route('admin.category.destroy', ['category' => $category->slug]) }}"
+                            >
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn-secondary-action col-4 col-lg-12">Supprimer</button>
                             </form>
                         </div>
                         <div class="col-4 col-lg-2">
-                            <a type="button" href="{{ route('admin.category.edit', $category->id) }}"
+                            <a type="button" href="{{ route('admin.category.edit', $category->slug) }}"
                                class="btn-primary-action editLink text-decoration-none text-center col-12 col-lg-10">
                                 Editer
                             </a>

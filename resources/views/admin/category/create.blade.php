@@ -6,7 +6,7 @@
             <div class="col-md-8">
                 <div class="card my-4">
                     <div class="card-header">
-                        {{ __('Article') }}
+                        {{ __('Catégories') }}
                     </div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('admin.category.store') }}" enctype="multipart/form-data">
@@ -29,7 +29,7 @@
                             </div>
                             <div class="row justify-content-end my-4 me-0">
                                 <button class="btn-secondary-action col-4 col-lg-2" type="reset">Annuler</button>
-                                <button class="btn-primary-action col-4 col-lg-2" type="submit">Poster</button>
+                                <button class="btn-primary-action col-4 col-lg-2" type="submit">Créer</button>
                             </div>
                         </form>
                     </div>

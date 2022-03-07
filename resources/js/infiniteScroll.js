@@ -26,8 +26,8 @@ const getPaginatePosts = async (page, categoryId) => {
         'Content-type': 'application/json'
     }
     const url = categoryId === ''
-        ? `/posts?page=${page}`
-        : `/posts?cat=${categoryId}&page=${page}`
+        ? `/api/posts?page=${page}`
+        : `/api/posts?cat=${categoryId}&page=${page}`
 
     const response = await fetch(url, {headers})
     if (response.status !== 200) {

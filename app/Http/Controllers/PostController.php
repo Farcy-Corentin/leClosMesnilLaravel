@@ -24,7 +24,7 @@ class PostController extends Controller
         $categories = Category::all();
         $currentPath = route(Route::currentRouteName() ?? '');
 
-        return view('post', compact('posts', 'categories', 'lastPosts', 'currentPath', 'nextAvailable'));
+        return view('posts', compact('posts', 'categories', 'lastPosts', 'currentPath', 'nextAvailable'));
     }
 
     public function getPost(Request $request): \Illuminate\Http\JsonResponse
@@ -57,6 +57,6 @@ class PostController extends Controller
         $post = Post::with('comments.user')->where('slug', $slug)->first();
         $comments = $post->comments->sortByDesc('created_at');
         $categories = Category::all();
-        return view('single', compact('post', 'comments', 'categories'));
+        return view('singlePost', compact('post', 'comments', 'categories'));
     }
 }

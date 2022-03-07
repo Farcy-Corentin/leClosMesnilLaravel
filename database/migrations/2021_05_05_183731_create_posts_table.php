@@ -17,7 +17,7 @@ class CreatePostsTable extends Migration
             $table->uuid('id')->primary();
             $table->uuid('user_id');
             $table->uuid('category_id');
-            $table->string('title');
+            $table->string('title', 100);
             $table->string('slug');
             $table->longtext('content');
             $table->string('image_path');

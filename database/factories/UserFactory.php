@@ -25,7 +25,7 @@ class UserFactory extends Factory
             'last_name' => $this->faker->lastName(),
             'email' => Str::slug($firstname) . '@leclosmesnil.fr',
             'email_verified_at' => null,
-            'password' => Hash::make('L3Cl0sM3ns1l'),
+            'password' => Hash::make('L3Closmesnil'),
             'phone' => $this->faker->e164PhoneNumber(),
             'remember_token' => Hash::make(Str::uuid()->toString())
         ];

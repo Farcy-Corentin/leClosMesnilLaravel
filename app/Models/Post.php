@@ -29,6 +29,15 @@ class Post extends Model
 
     protected $table = 'posts';
 
+    public function image(): string
+    {
+        if(filter_var($this->image_path, FILTER_VALIDATE_URL))
+        {
+            return $this->image_path;
+        }
+        return asset('storage/img/'.$this->image_path);
+    }
+
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class, 'category_id');

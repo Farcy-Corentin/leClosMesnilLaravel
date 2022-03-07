@@ -27,7 +27,7 @@
                              class="mb-4 pr-5 col-12 col-md-6 col-xl-4 invisible">
                         <div class="article-header">
                             <img id="thumbnails" src="[IMAGE]"
-                                 class="postList pb-1"
+                                 class="postListImg pb-1"
                                  alt="">
                             <div class="row align-items-baseline mb-1">
                                 <div class="col-4">
@@ -51,8 +51,8 @@
                         @forelse($posts as $post)
                             <article class="mb-4 pr-5 col-12 col-md-6 col-xl-4">
                                 <div class="article-header">
-                                    <img src="{{ asset('storage/img/'.$post->image_path) }}"
-                                         class="postList pb-1"
+                                    <img src="{{ $post->image() }}"
+                                         class="postListImg pb-1"
                                          alt="">
                                     <div class="row align-items-baseline mb-1">
                                         <div class="col-4">
@@ -62,7 +62,7 @@
                                         {{ $post->created_at->format('d/m/Y') }}
                                     </span>
                                     </div>
-                                    <h2 class="h-3 pb-1 m-0">{{ $post->title }}</h2>
+                                    <h2 class="h-3 postListTitle pb-1 m-0">{{ $post->title }}</h2>
                                 </div>
                                 <div class="text-end my-1 commentBtn">
                                     <a href="{{ route("post.comment", [$post->slug]) }}" class="fw-bold"><i
@@ -77,7 +77,7 @@
                         @endforelse
                     </div>
                     <div class="text-center">
-                        <button id="buttonLoad" class="btn-cta py-1 px-2">Load more</button>
+                        <button id="buttonLoad" class="btn-cta py-1 px-2">Voir plus d'articles</button>
                     </div>
                 </div>
                 <aside class="col-xl-2 sticky-top d-none d-xl-block">

@@ -20,12 +20,13 @@
                             <td>{{ $booking->started_at }}</td>
                             <td>{{ $booking->finished_at }}</td>
                             <td><a href="{{ route('admin.booking.show', $booking->id) }}"
-                                   class="btn btn-outline-primary">View</a>
+                                   class="btn btn-outline-primary"><i class="far fa-eye"></i></a>
                                 <form method="POST"
                                       action="{{ route('admin.booking.destroy', ['booking' => $booking->id]) }}">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn-secondary-action col-4 col-lg-12">Supprimer
+                                    <button type="submit" class="">
+                                        <i class="far fa-trash-alt"></i>
                                     </button>
                                 </form>
                             </td>

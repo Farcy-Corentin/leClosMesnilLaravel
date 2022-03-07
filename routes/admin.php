@@ -11,8 +11,7 @@ Route::resource('post', PostController::class);
 Route::resource('season', SeasonController::class);
 Route::resource('booking', BookingController::class);
 Route::middleware('optimizeImages')->group(function () {
-    // all images will be optimized automatically
-    Route::post('post.store', 'PostController@store');
+    Route::post('post.store', [PostController::class, 'store']);
 });
 
 Route::get('/calendar', function () {

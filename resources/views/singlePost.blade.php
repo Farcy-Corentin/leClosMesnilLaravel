@@ -5,7 +5,7 @@
 @section('content')
     <section class='section-blog col-12 mb-2 mt-2'>
         <ul id="categoryNav" class="nav sticky-top justify-content-center bg-white mb-3">
-            <li class="nav-item"><a class="nav-link" href="{{ route("index") }}">accueil</a>
+            <li class="nav-item"><a class="nav-link" href="{{ route("index") }}">Accueil</a>
             </li>
             @forelse ($categories as $c)
                 <li class="nav-item">
@@ -16,22 +16,23 @@
             @endforelse
         </ul>
         <div class="container">
-            <article class="mb-3">
+            <article class="mb-1">
                 <div class="article-header">
                     <div class="image-container row mb-2">
-                        <img src="{{ asset('storage/img/'.$post->image_path) }}" class="singlePost pb-1" alt="">
+                        <img src="{{ $post->image() }}" class="singlePostImg pb-1" alt="">
                     </div>
-                    <div class="row align-items-baseline mb-1">
-                        <div class="col-4"><span class="badge bg-badge text-dark">{{ $post->category->name }}</span>
+                    <div class="row align-items-baseline mb-2">
+                        <div class="col-4">
+                            <span class="badge bg-badge text-dark">{{ $post->category->name }}</span>
                         </div>
                         <span
                             class="created-at col-8 fst-italic fw-bold text-end">
                             {{ $post->created_at->format('d/m/Y') }}
                         </span>
                     </div>
-                    <h2 class="pb-1 m-0">{{ $post->title }}</h2>
+                    <h2 class="pb-2 singlePostTitle fw-bolder m-0">{{ $post->title }}</h2>
                 </div>
-                <p id="visible" class="pb-1">{!! nl2br($post->content) !!}</p>
+                <p class="pb-1">{!! nl2br($post->content) !!}</p>
             </article>
             @auth
                 <section id="comment">
@@ -66,7 +67,7 @@
                                 </div>
                             </div>
                             <p class="contentInitial">{!! nl2br($comment->content) !!}</p>
-                            @if (auth()->user() && auth()->user()->id === $comment->author)
+                            @if (auth()->user() && auth()->user()->id === $comment->author_id)
                                 <form class="commentForm mt-3 d-none"
                                       action="{{ route('comment.update', $comment->id) }}"
                                       method="POST">
@@ -94,32 +95,31 @@
                                     </div>
                                 </form>
                             @endif
-                            @if (auth()->user() && auth()->user()->id === $comment->author)
+                            @if (auth()->user() && auth()->user()->id === $comment->author_id)
                                 <div class="col-12 action">
                                     <form action="{{ route('comment.destroy', $comment) }}" method="POST">
                                         <div class="row justify-content-end me-0">
                                         @csrf
                                         <!-- Modal -->
                                             <div class="modal fade"
-                                                 id="exampleModal"
-                                                 tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                 id="Modal"
+                                                 tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog modal-dialog-centered">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h5 class="modal-title text-danger" id="exampleModalLabel">
+                                                            <h5 class="modal-title" id="ModalLabel">
                                                                 Supprimer votre commentaire
                                                             </h5>
                                                             <button type="button"
                                                                     class="btn-close"
                                                                     data-bs-dismiss="modal" aria-label="Close">
-
                                                             </button>
                                                         </div>
                                                         <div class="modal-body">
                                                             <i class="fas fa-exclamation-triangle text-warning"></i>
-                                                            <span class="text-warning">
-                                                            cette opération ne peut pas être annulée
-                                                        </span>
+                                                            <span>
+                                                                cette opération ne peut pas être annulée
+                                                            </span>
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button"
@@ -130,7 +130,7 @@
                                                             <button class="btn btn-danger text-white"
                                                                     type="submit"
                                                                     data-bs-toggle="modal"
-                                                                    data-bs-target="#exampleModal">
+                                                                    data-bs-target="#Modal">
                                                                 Oui supprimer le commentaire
                                                             </button>
                                                         </div>
@@ -140,7 +140,7 @@
                                             <div class="col-3">
                                                 <div class="row justify-content-end">
                                                     <i class="col-1 hoverTrash far fa-trash-alt"
-                                                       data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                       data-bs-toggle="modal" data-bs-target="#Modal">
                                                     </i>
                                                     <i class="col-1 far hoverEdit fa-edit comment update"
                                                        data-comment="{{ $comment->id }}">

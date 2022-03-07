@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\CommentPost;
 use App\Models\Post;
 use App\Models\User;
+use App\Models\Booking;
 use Exception;
 use Illuminate\Database\Seeder;
 
@@ -21,6 +22,7 @@ class PersonaSeeder extends Seeder
         $this->users($persona['users']);
         $this->categories($persona['post_categories']);
         $this->posts($persona['posts']);
+        $this->bookings($persona['bookings']);
     }
 
     /** @noinspection PhpPossiblePolymorphicInvocationInspection */
@@ -81,5 +83,16 @@ class PersonaSeeder extends Seeder
                 ->count($postsPerCategory)
                 ->create([ 'comment_count' => $commentsPerPost ]);
         }
+    }
+
+    private function bookings(array $bookings) {
+        $users = User::query()->whereIn('id', $bookings['users'])->pluck('id')->toArray();
+
+        $bookingState = fn (array $attributes, mixed $booking) => ['user_id' => $users[array_rand($users)]];
+
+        Booking::factory()
+            ->state($bookingState)
+            ->count(15)
+            ->create();
     }
 }

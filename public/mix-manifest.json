@@ -1,6 +1,7 @@
 {
     "/js/app.js": "/js/app.js",
     "/js/intlTelInput.js": "/js/intlTelInput.js",
+    "/js/intlTelInputUtils.js": "/js/intlTelInputUtils.js",
     "/js/datePicker.js": "/js/datePicker.js",
     "/js/fullCalendar.js": "/js/fullCalendar.js",
     "/js/infiniteScroll.js": "/js/infiniteScroll.js",

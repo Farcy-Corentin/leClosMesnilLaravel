@@ -17,7 +17,6 @@ class CategoryController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth');
     }
 
     public function index(): View|Factory
@@ -41,7 +40,7 @@ class CategoryController extends Controller
 
         return redirect()
             ->route('admin.category.show', $category->slug)
-            ->with(['success' => 'Création de la catégorie']);
+            ->with(['success' => 'La catégorie a bien été créé']);
     }
 
     public function show(string $slug): View|Factory
@@ -52,26 +51,28 @@ class CategoryController extends Controller
     }
 
 
-    public function edit(int $id): View|Factory
+    public function edit(string $slug): View|Factory
     {
-        $category = Category::find($id);
+        $category = Category::where('slug','=',$slug)->first();
 
         return view("admin.category.edit", compact('category'));
     }
 
-    public function update(CategoryStoreRequest $request, Category $category): Redirector|RedirectResponse
+    public function update(CategoryStoreRequest $request, string $slug): Redirector|RedirectResponse
     {
+        $category = Category::where('slug', '=', $slug)->first();
         $this->storeCategory($request->all(), $category);
 
         $category->save();
 
         return redirect()
-            ->route('admin.category.show', $category->id)
-            ->with(['success' => 'Modification de la catégorie']);
+            ->route('admin.category.show', $category->slug)
+            ->with(['success' => 'La catégorie a bien été modifié']);
     }
 
-    public function destroy(Category $category): RedirectResponse
+    public function destroy(string $slug): RedirectResponse
     {
+        $category = Category::where('slug', '=', $slug)->first();
         $category->delete();
         return redirect()
             ->route('admin.category.index')

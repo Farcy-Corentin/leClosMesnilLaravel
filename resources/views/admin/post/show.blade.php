@@ -5,10 +5,10 @@
     <div class="container">
         <section class='section-blog col-12 mb-2 mt-2'>
             <div class="container">
-                <article class="mb-3">
+                <article class="mb-1">
                     <div class="article-header">
                         <div class="image-container row mb-2">
-                            <img src="{{ asset('storage/img/'.$post->image_path) }}" class="singlePost pb-1" alt="">
+                            <img src="{{ $post->image() }}" class="singlePostImg pb-1" alt="">
                         </div>
                         <div class="row align-items-baseline mb-1">
                             <div class="col-4"><span class="badge bg-badge text-dark">{{ $post->category->name }}</span>
@@ -18,10 +18,11 @@
                             {{ $post->created_at->format('d/m/Y') }}
                         </span>
                         </div>
-                        <h2 class="pb-1 m-0">{{ $post->title }}</h2>
+                        <h2 class="singlePostTitle pb-1 m-0">{{ $post->title }}</h2>
                     </div>
                     <p id="visible" class="pb-1">{!! nl2br($post->content) !!}</p>
                 </article>
+            </div>
         </section>
         <div class="col-12">
             <div class="well">
@@ -37,14 +38,14 @@
                 <hr>
                 <div class="row justify-content-end me-0">
                     <div class="col-4 col-lg-2">
-                        <form method="POST" action="{{ route('admin.post.destroy', ['post' => $post->id]) }}">
+                        <form method="POST" action="{{ route('admin.post.destroy', ['post' => $post->slug]) }}">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn-secondary-action col-4 col-lg-12">Supprimer</button>
                         </form>
                     </div>
                     <div class="col-4 col-lg-2">
-                        <a type="button" href="{{ route('admin.post.edit', $post->id) }}"
+                        <a type="button" href="{{ route('admin.post.edit', $post->slug) }}"
                            class="btn-primary-action editLink text-decoration-none text-center col-12 col-lg-10">
                             Editer
                         </a>

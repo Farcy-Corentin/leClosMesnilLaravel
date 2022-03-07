@@ -26,7 +26,6 @@ class CommentController extends Controller
             // TODO ERROR
             return redirect()->route('index');
         }
-
         $comment = new CommentPost();
         $comment->post_id = $p->id;
         $comment->content = $validated['content'];
@@ -38,28 +37,17 @@ class CommentController extends Controller
         return redirect()->route('post.show', $p->slug);
     }
 
-    public function update(int $id, Request $request): RedirectResponse
+    public function update(CommentPost $comment, Request $request): RedirectResponse
     {
         $validated = $this->getValidatedData($request);
-
-        $comment = CommentPost::find($id);
-        if ($comment === null) {
-            // TODO ERROR
-            return redirect()->route('index');
-        }
 
         $comment->content = $validated['content'];
         $comment->save();
         return redirect()->route('post.show', $comment->post->slug);
     }
 
-    public function destroy(int $comment): RedirectResponse
+    public function destroy(CommentPost $comment): RedirectResponse
     {
-        /** @var CommentPost|null $comment */
-        $comment = CommentPost::find($comment);
-        if ($comment === null) {
-            return back()->with('error', 'comment not found');
-        }
         $comment->post->comment_count -= 1;
         $comment->post->save();
 

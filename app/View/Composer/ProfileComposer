@@ -9,14 +9,7 @@ use App\Models\Post;
 
 class AppComposer
 {
-
-    /**
-     * Bind data to the view.
-     *
-     * @param  \Illuminate\View\View  $view
-     * @return void
-     */
-    public function compose(View $view,string $slug)
+    public function compose(View $view,string $slug): void
     {
 
         $categories = Category::all();
